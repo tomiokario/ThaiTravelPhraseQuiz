@@ -1,70 +1,124 @@
-# Getting Started with Create React App
+# Travel Quiz
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## 概要
 
-## Available Scripts
+このプロジェクトは、タイ語に特化したクイズアプリケーションです。  
+ユーザーは複数のコース（例：あいさつ、基本単語など）から好きなものを選択し、タイ語のクイズに挑戦できます。  
+各コースのクイズデータは個別の JavaScript ファイルとして管理されているため、新しいコースファイルを追加するだけで自動的にアプリ内に反映されます。
 
-In the project directory, you can run:
+## 特徴
 
-### `npm start`
+- **タイ語専用**  
+  タイ語クイズのみを対象としており、音声読み上げもタイ語 (th-TH) に固定しています。
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+- **コース選択機能**  
+  複数のコース（例：あいさつ、基本単語など）から好きなものを選択してクイズに挑戦可能。
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+- **柔軟なクイズデータ管理**  
+  各コースの問題は `src/data/courses/` ディレクトリ内の個別ファイルで管理。  
+  新たなコースファイルを追加すれば、ビルド時に自動的にコース一覧へ反映されます。
 
-### `npm test`
+- **キーボード操作対応**  
+  1～4 の数字キーで選択、Enter キーで回答確定が可能です。
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- **回答履歴・結果表示**  
+  正誤表示、回答履歴、所要時間の計測を行い、結果画面で表示します。
 
-### `npm run build`
+## ディレクトリ構成
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+```
+travel-quiz/
+├─ node_modules/
+├─ public/
+│   └─ index.html
+├─ src/
+│   ├─ data/
+│   │   └─ courses/
+│   │       ├─ 1_あいさつ.js
+│   │       └─ 2_基本単語.js
+│   ├─ TravelQuiz.jsx      // メインコンポーネント
+│   ├─ TravelQuiz.css      // 独自の CSS スタイル
+│   └─ index.js            // エントリーポイント
+├─ package.json
+└─ README.md
+```
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+- **src/data/courses/**  
+  各コースのクイズデータを管理するディレクトリ。  
+  各ファイルは `title` と `quizData` をエクスポートする形式となっています。
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+- **TravelQuiz.jsx**  
+  アプリのメインコンポーネント。Tailwind CSS などを使用せず、汎用的なクラス名と独自の CSS によるスタイリングを行っています。
 
-### `npm run eject`
+- **TravelQuiz.css**  
+  アプリのスタイルを定義した CSS ファイル。必要に応じてレイアウトや色などをカスタマイズできます。
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+## インストール方法
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+1. **リポジトリのクローン**
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+   ```bash
+   git clone <リポジトリのURL>
+   ```
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+2. **プロジェクトディレクトリへ移動**
 
-## Learn More
+   ```bash
+   cd travel-quiz
+   ```
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+3. **依存関係のインストール**
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+   ```bash
+   npm install
+   ```
 
-### Code Splitting
+## 実行方法
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+以下のコマンドで開発サーバーを起動します。
 
-### Analyzing the Bundle Size
+```bash
+npm start
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+ブラウザで [http://localhost:3000](http://localhost:3000) にアクセスし、タイ語クイズに挑戦してください。
 
-### Making a Progressive Web App
+## 新しいコースの追加方法
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+1. **コースファイルの作成**  
+   `src/data/courses/` ディレクトリ内に新しいファイル（例：`3_旅行フレーズ.js`）を作成します。
 
-### Advanced Configuration
+2. **コースデータの記述**  
+   以下の形式で `title` と `quizData` をエクスポートしてください。
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+   ```js
+   // 3_旅行フレーズ.js
+   export const title = '3_旅行フレーズ';
+   export const quizData = [
+     {
+       question: "サンプル問題",
+       roman: "(romanization)",
+       options: ["選択肢1", "選択肢2", "選択肢3", "選択肢4"],
+       correctAnswer: "選択肢1"
+     },
+     // 他の問題を追加
+   ];
+   ```
 
-### Deployment
+3. **自動反映**  
+   新しいコースファイルを追加した後、再ビルド（もしくは開発サーバーの再起動）すれば、アプリ内のコース一覧に自動的に反映されます。
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+## カスタマイズ
 
-### `npm run build` fails to minify
+- **スタイルの変更**  
+  `TravelQuiz.css` を編集することで、アプリのデザインを自由にカスタマイズ可能です。
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+- **機能の拡張**  
+  React コンポーネント（TravelQuiz.jsx）を変更して、新しい機能の追加や挙動の調整が行えます。
+
+## 注意事項
+
+- 本プロジェクトは React を用いたシングルページアプリケーションです。
+- Tailwind CSS ではなく、独自の CSS を利用しているため、スタイルは `TravelQuiz.css` で管理してください。
+- コースデータの追加時は、必ず `title` と `quizData` の形式に従ってください。
+# ThaiTravelPhraseQuiz
