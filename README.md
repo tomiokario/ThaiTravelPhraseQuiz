@@ -57,6 +57,8 @@ travel-quiz/
 
 1. **コースファイルの作成**  
    `src/data/courses/` ディレクトリ内に新しいファイル（例：`3_旅行フレーズ.js`）を作成します。
+   
+   ※ ChatGPTをコース作成に使用する例： https://chatgpt.com/share/67bd9e6f-92b4-8007-a98d-efc0a85d7a05 
 
 2. **コースデータの記述**  
    以下の形式で `title` と `quizData` をエクスポートしてください。
