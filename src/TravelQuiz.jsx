@@ -1,13 +1,24 @@
 import React, { useState, useEffect } from 'react';
-import './TravelQuiz.css'; // 独自CSSをインポート
+import './TravelQuiz.css';
 import { Volume2 } from 'lucide-react';
 
-// 例）コースを自動読み込みする場合：
-const coursesContext = require.context('./data/courses', false, /\.js$/);
-const courses = coursesContext.keys().map((key) => {
-  const courseModule = coursesContext(key);
+// 各ディレクトリから問題データを読み込み
+const maleCoursesContext = require.context('./data/courses/male', false, /\.js$/);
+const femaleCoursesContext = require.context('./data/courses/female', false, /\.js$/);
+
+const maleCourses = maleCoursesContext.keys().map((key) => {
+  const courseModule = maleCoursesContext(key);
   return { 
-    id: key,
+    id: 'male_' + key,
+    title: courseModule.title,
+    quizData: courseModule.quizData
+  };
+});
+
+const femaleCourses = femaleCoursesContext.keys().map((key) => {
+  const courseModule = femaleCoursesContext(key);
+  return { 
+    id: 'female_' + key,
     title: courseModule.title,
     quizData: courseModule.quizData
   };
@@ -15,7 +26,18 @@ const courses = coursesContext.keys().map((key) => {
 
 // メインコンポーネント
 export default function TravelQuiz() {
-  // クイズ・コース管理用の状態
+  // 性別選択用の状態（"male", "female", "none"）
+  const [selectedGender, setSelectedGender] = useState("none");
+
+  // 選択された性別に応じてコースを決定
+  const courses =
+    selectedGender === "male"
+      ? maleCourses
+      : selectedGender === "female"
+      ? femaleCourses
+      : [...maleCourses, ...femaleCourses];
+
+  // 以下は既存の状態管理
   const [hasStarted, setHasStarted] = useState(false);
   const [selectedCourse, setSelectedCourse] = useState(null);
   const [questions, setQuestions] = useState([]);
@@ -29,10 +51,9 @@ export default function TravelQuiz() {
   const [startTime, setStartTime] = useState(null);
   const [endTime, setEndTime] = useState(null);
 
-  // クイズ開始処理：選択したコースの問題をシャッフルして10問出題（問題数が少なければそのまま）
+  // クイズ開始処理：選択したコースの問題をシャッフルして10問出題
   const startQuiz = (course) => {
     const shuffled = shuffleArray([...course.quizData]);
-    // 10問に満たない場合は全問
     const selected = shuffled.slice(0, 10);
     const finalQuestions = selected.map((q) => ({
       ...q,
@@ -56,7 +77,7 @@ export default function TravelQuiz() {
     if (selectedCourse) startQuiz(selectedCourse);
   };
 
-  // コース選択画面へ戻る
+  // コース選択画面へ戻る（性別選択は保持）
   const backToCourseSelection = () => {
     setHasStarted(false);
     setSelectedCourse(null);
@@ -141,14 +162,46 @@ export default function TravelQuiz() {
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, [questions, currentQuestionIndex, isRevealed, selectedOption, hasStarted, showResult]);
 
-  // --- 画面構成 ---
-
-  // 1) コース選択画面
+  // ① コース選択画面（ラジオボタンで性別選択）
   if (!hasStarted) {
     return (
       <div className="quiz-container">
         <h1 className="quiz-title">タイ語クイズ コース選択</h1>
         <p className="quiz-text">以下のコースから選んでください：</p>
+        {/* 性別選択ラジオボタン */}
+        <div className="gender-selection">
+          <p>言葉の選択:</p>
+          <label>
+            <input
+              type="radio"
+              name="gender"
+              value="none"
+              checked={selectedGender === "none"}
+              onChange={(e) => setSelectedGender(e.target.value)}
+            />
+            指定なし
+          </label>
+          <label>
+            <input
+              type="radio"
+              name="gender"
+              value="male"
+              checked={selectedGender === "male"}
+              onChange={(e) => setSelectedGender(e.target.value)}
+            />
+            男性言葉
+          </label>
+          <label>
+            <input
+              type="radio"
+              name="gender"
+              value="female"
+              checked={selectedGender === "female"}
+              onChange={(e) => setSelectedGender(e.target.value)}
+            />
+            女性言葉
+          </label>
+        </div>
         <div className="course-list">
           {courses.map((course) => (
             <button
@@ -167,7 +220,8 @@ export default function TravelQuiz() {
     );
   }
 
-  // 2) クイズデータの読み込み待ち状態
+
+  // ② クイズデータの読み込み待ち状態
   if (!questions.length && hasStarted && !showResult) {
     return (
       <div className="quiz-container">
@@ -176,7 +230,7 @@ export default function TravelQuiz() {
     );
   }
 
-  // 3) 結果画面
+  // ③ 結果画面
   if (showResult) {
     const timeTaken = endTime && startTime ? ((endTime - startTime) / 1000).toFixed(2) : 0;
     return (
@@ -216,16 +270,10 @@ export default function TravelQuiz() {
           </ul>
         </div>
         <div className="button-group">
-          <button
-            onClick={restartQuiz}
-            className="restart-button"
-          >
+          <button onClick={restartQuiz} className="restart-button">
             リスタート
           </button>
-          <button
-            onClick={backToCourseSelection}
-            className="back-button"
-          >
+          <button onClick={backToCourseSelection} className="back-button">
             コース選択へ
           </button>
         </div>
@@ -233,7 +281,7 @@ export default function TravelQuiz() {
     );
   }
 
-  // 4) クイズ画面
+  // ④ クイズ画面
   const currentQ = questions[currentQuestionIndex];
   return (
     <div className="quiz-container">
@@ -285,10 +333,7 @@ export default function TravelQuiz() {
                 <p className="correct-answer">
                   正解は「{currentQ.correctAnswer}」です。
                 </p>
-                <button
-                  onClick={goToNextQuestion}
-                  className="next-button"
-                >
+                <button onClick={goToNextQuestion} className="next-button">
                   次へ
                 </button>
               </div>
