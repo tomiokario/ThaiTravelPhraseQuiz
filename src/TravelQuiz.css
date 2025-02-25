@@ -271,33 +271,18 @@
   background-color: #5a6268;
 }
 
-/* 追加：性別選択ラジオボタンのスタイル */
-.gender-selection {
-  margin-bottom: 20px;
-  font-size: 1.1em;
+
+/* 追加：2列レイアウト（左右の縦一列）用のスタイル */
+.course-list.two-columns {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  gap: 20px;
 }
 
-.gender-selection p {
-  margin: 0 0 10px;
-  font-weight: bold;
-}
-
-.gender-selection label {
-  display: inline-block;
-  margin-right: 15px;
-  padding: 5px 10px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  cursor: pointer;
-  transition: background-color 0.2s, border-color 0.2s;
-}
-
-.gender-selection label:hover {
-  background-color: #f0f0f0;
-  border-color: #007BFF;
-}
-
-.gender-selection input[type="radio"] {
-  margin-right: 5px;
-  accent-color: #007BFF;
+.course-column {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 48%;
 }

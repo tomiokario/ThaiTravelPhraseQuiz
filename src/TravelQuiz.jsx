@@ -162,63 +162,47 @@ export default function TravelQuiz() {
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, [questions, currentQuestionIndex, isRevealed, selectedOption, hasStarted, showResult]);
 
-  // ① コース選択画面（ラジオボタンで性別選択）
+  // ① コース選択画面（ラジオボタンで性別選択、かつ「指定なし」の場合は2列表示）
   if (!hasStarted) {
     return (
       <div className="quiz-container">
-        <h1 className="quiz-title">タイ語クイズ コース選択</h1>
-        <p className="quiz-text">以下のコースから選んでください：</p>
-        {/* 性別選択ラジオボタン */}
-        <div className="gender-selection">
-          <p>言葉の選択:</p>
-          <label>
-            <input
-              type="radio"
-              name="gender"
-              value="none"
-              checked={selectedGender === "none"}
-              onChange={(e) => setSelectedGender(e.target.value)}
-            />
-            指定なし
-          </label>
-          <label>
-            <input
-              type="radio"
-              name="gender"
-              value="male"
-              checked={selectedGender === "male"}
-              onChange={(e) => setSelectedGender(e.target.value)}
-            />
-            男性言葉
-          </label>
-          <label>
-            <input
-              type="radio"
-              name="gender"
-              value="female"
-              checked={selectedGender === "female"}
-              onChange={(e) => setSelectedGender(e.target.value)}
-            />
-            女性言葉
-          </label>
-        </div>
-        <div className="course-list">
-          {courses.map((course) => (
-            <button
-              key={course.id}
-              onClick={() => {
-                setSelectedCourse(course);
-                startQuiz(course);
-              }}
-              className="course-button"
-            >
-              {course.title}
-            </button>
-          ))}
+        <h1 className="quiz-title">タイ語旅行フレーズ</h1>
+        <p className="quiz-text">以下のコースから選んでください</p>
+        <div className="course-list two-columns">
+          <div className="course-column">
+            {maleCourses.map((course) => (
+              <button
+                key={course.id}
+                onClick={() => {
+                  setSelectedCourse(course);
+                  startQuiz(course);
+                }}
+                className="course-button"
+              >
+                {course.title}
+              </button>
+            ))}
+          </div>
+          <div className="course-column">
+            {femaleCourses.map((course) => (
+              <button
+                key={course.id}
+                onClick={() => {
+                  setSelectedCourse(course);
+                  startQuiz(course);
+                }}
+                className="course-button"
+              >
+                {course.title}
+              </button>
+            ))}
+          </div>
         </div>
       </div>
     );
   }
+
+
 
 
   // ② クイズデータの読み込み待ち状態
