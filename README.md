@@ -53,36 +53,6 @@ travel-quiz/
 - **TravelQuiz.css**  
   アプリのスタイルを定義した CSS ファイル。必要に応じてレイアウトや色などをカスタマイズできます。
 
-## インストール方法
-
-1. **リポジトリのクローン**
-
-   ```bash
-   git clone <リポジトリのURL>
-   ```
-
-2. **プロジェクトディレクトリへ移動**
-
-   ```bash
-   cd travel-quiz
-   ```
-
-3. **依存関係のインストール**
-
-   ```bash
-   npm install
-   ```
-
-## 実行方法
-
-以下のコマンドで開発サーバーを起動します。
-
-```bash
-npm start
-```
-
-ブラウザで [http://localhost:3000](http://localhost:3000) にアクセスし、タイ語クイズに挑戦してください。
-
 ## 新しいコースの追加方法
 
 1. **コースファイルの作成**  
@@ -116,9 +86,33 @@ npm start
 - **機能の拡張**  
   React コンポーネント（TravelQuiz.jsx）を変更して、新しい機能の追加や挙動の調整が行えます。
 
-## 注意事項
 
-- 本プロジェクトは React を用いたシングルページアプリケーションです。
-- Tailwind CSS ではなく、独自の CSS を利用しているため、スタイルは `TravelQuiz.css` で管理してください。
-- コースデータの追加時は、必ず `title` と `quizData` の形式に従ってください。
-# ThaiTravelPhraseQuiz
+
+## ローカル環境でのインストールと実行
+
+1. **リポジトリのクローン**
+
+   ```bash
+   git clone <リポジトリのURL>
+   ```
+
+2. **プロジェクトディレクトリへ移動**
+
+   ```bash
+   cd travel-quiz
+   ```
+
+3. **依存関係のインストール**
+
+   ```bash
+   npm install
+   ```
+
+4. **実行方法**
+  ```bash
+  npm start
+  ```
+
+ブラウザで [http://localhost:3000](http://localhost:3000) にアクセス
+
+
