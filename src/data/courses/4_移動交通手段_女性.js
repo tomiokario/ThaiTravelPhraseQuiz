@@ -1,31 +1,31 @@
-// 4_移動交通手段.js
-export const title = '4_移動・交通手段';
+// 4_移動交通手段_女性.js
+export const title = '4_移動・交通手段（女性）';
 export const quizData = [
   {
-    question: "ไป...",
-    roman: "pai...",
+    question: "ไป...ค่ะ",
+    roman: "pai ... kha",
     options: [
       "～へ行きたいです",
       "私は日本人です",
-      "お元気ですか？",
-      "～を食べたいです"
+      "元気ですか？",
+      "～を食べます"
     ],
     correctAnswer: "～へ行きたいです"
   },
   {
-    question: "ใช้มิเตอร์หน่อย",
-    roman: "chai meter noi",
+    question: "ใช้มิเตอร์หน่อยค่ะ",
+    roman: "chai meter noi kha",
     options: [
       "メーターを使ってください",
       "ここで止めてください",
       "少し安くしてください",
-      "値段はいくらですか？"
+      "いくらですか？"
     ],
     correctAnswer: "メーターを使ってください"
   },
   {
-    question: "ราคาเท่าไหร่",
-    roman: "raakhaa thaorai",
+    question: "ราคาเท่าไหร่คะ",
+    roman: "raakhaa thaorai kha",
     options: [
       "いくらかかりますか？",
       "何時ですか？",
@@ -35,8 +35,8 @@ export const quizData = [
     correctAnswer: "いくらかかりますか？"
   },
   {
-    question: "จอดตรงนี้",
-    roman: "jot trong-nii",
+    question: "จอดตรงนี้ค่ะ",
+    roman: "jot trong-nii kha",
     options: [
       "ここで止めてください",
       "あちらへ行きます",
@@ -46,8 +46,8 @@ export const quizData = [
     correctAnswer: "ここで止めてください"
   },
   {
-    question: "～อยู่ที่ไหน",
-    roman: "~ yuu tee nai",
+    question: "～อยู่ที่ไหนคะ",
+    roman: "~ yuu tee nai kha",
     options: [
       "これはいくらですか？",
       "～はどこですか？",

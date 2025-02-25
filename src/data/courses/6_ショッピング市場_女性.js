@@ -1,9 +1,9 @@
-// 6_ショッピング市場.js
-export const title = '6_ショッピング・市場';
+// 6_ショッピング市場_女性.js
+export const title = '6_ショッピング・市場（女性）';
 export const quizData = [
   {
-    question: "ขอดูก่อน",
-    roman: "khor duu gorn",
+    question: "ขอดูก่อนค่ะ",
+    roman: "khor duu gorn kha",
     options: [
       "ちょっと見てもいいですか？",
       "もう買いました",
@@ -13,10 +13,8 @@ export const quizData = [
     correctAnswer: "ちょっと見てもいいですか？"
   },
   {
-    // 実際に混在するスラング「ขอ試 (khor si)」もありますが、
-    // 一般的な言い方を採用しておきます
-    question: "ขอลองได้ไหม",
-    roman: "khor long dai mai",
+    question: "ขอลองได้ไหมคะ",
+    roman: "khor long dai mai kha",
     options: [
       "試着してもいいですか？",
       "捨ててもいいですか？",
@@ -26,8 +24,8 @@ export const quizData = [
     correctAnswer: "試着してもいいですか？"
   },
   {
-    question: "ลดหน่อยได้ไหม",
-    roman: "lot noi dai mai",
+    question: "ลดหน่อยได้ไหมคะ",
+    roman: "lot noi dai mai kha",
     options: [
       "少し安くしてください",
       "少し待ってください",
@@ -37,14 +35,14 @@ export const quizData = [
     correctAnswer: "少し安くしてください"
   },
   {
-    question: "ซื้อ",
-    roman: "sue",
+    question: "ซื้อค่ะ",
+    roman: "sue kha",
     options: ["買う", "売る", "見る", "借りる"],
     correctAnswer: "買う"
   },
   {
-    question: "มีสีอื่นไหม",
-    roman: "mii sii uen mai",
+    question: "มีสีอื่นไหมคะ",
+    roman: "mii sii uen mai kha",
     options: [
       "別の色はありますか？",
       "新しい商品はありますか？",
